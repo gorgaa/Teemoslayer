@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teemo Slayer</title>
+<meta name="description" content="Idle Game inspired by League of Legends">
+<meta name="keywords" content="Teemoslayer, Teemo Slayer, Lol incremental, Teemo, Lol clicking">
+<!--
+Code and graphics - Phobos 2014-2020
+-->
+<link rel="icon" href="files/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="files/favicon.ico" type="image/x-icon"/>
+
+<!-- Prevents double-tap zoom and enhances rotate-view on iOS devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- Style -->
+
+<link rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<!-- Scripts -->
+<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- google verification -->
+<meta name="google-site-verification" content="P1fWB8IwcD1F57LUpkItnuT7Y5u1BnzeHlmkxFzS7CM" />
+
+
+<!-- google adsense -->
+<script data-ad-client="ca-pub-1179038170465902" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- end of adsense -->
+
+
+<!-- google fonts -->
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+<!-- cookie consent - https://cookieconsent.insites.com/download/ -->
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#252e39"
+    },
+    "button": {
+      "background": "#14a7d0"
+    }
+  },
+  "theme": "classic",
+  "content": {
+    "message": "Teemo Slayer uses cookies to ensure you get the best experience on this website."
+  }
+})});
+</script>
+<!-- end of cookie consent -->
+
+</head>
+
+
+
+
+
+<body>
+
+<div id="topBanner">
+<img src="logo.png" id="logo">
+<!--<a href="http://teemo-slayer.wikia.com/wiki/Teemo_Slayer_Wiki" target="_blank"><span id="wikiLink" class="topBannerButton">WIKI</span></a> -->
+
+<div class="topBannerButton"><a href="http://www.reddit.com/r/teemoslayer/" target="_blank" class="topBannerButton">r/teemoslayer</a></div>
+
+</div>
+
+<div id="adBanner">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Classic Horizontal Ad Unit Left -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-1179038170465902"
+       data-ad-slot="4829560162"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Classic Horizontal Ad Unit Right -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-1179038170465902"
+       data-ad-slot="7264151812"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<div id="game"> <!-- MAIN GAME -->
+
+
+
+
+
+<!-- *********************
+START OF HIT HIM
+********************** -->
+
+<div id="hitHim">
+
+
+
+
+<div id="mainContent">
+
+<div id="mainLeft">
+<h2>Gold<br/><span id="displayedGold">0</span></h2>
+<span id="mainButton" onClick="hitTeemo();" ><img alt="teemoFace" class="mainButtonImage" id="mainButtonIcon" src="files/teemoPortraits/teemo_face.jpg" width="196" height="196"></span><br />
+<span style="font-weight: bold;" id="fadingHitPower"></span><br/>
+<span style="font-weight: bold;" id="fadingSpellHitPower"></span><br/>
+
+<h3>Gold per second<br/><span id="displayedGoldPerSecond">0</span></h3>
+<h3>Teemos slain<br/><span id="displayedTeemosSlain">0</span></h3>
+
+
+</div>
+
+<div id="mainRight">
+
+
+<!-- Short stats -->
+
+
+<h3>Stats</h3>
+<img alt="chosenPassive" style="cursor: pointer;  border: 1px groove; " id="chosenPassiveIcon" src="files/passives/unknown.jpg" height="50" width="50" alt="passive"
+	onmousemove="ShowContent('chosenPassiveDescription'); return true;"
+	onmouseover="ShowContent('chosenPassiveDescription'); return true;"
+	onmouseout="HideContent('chosenPassiveDescription'); return true;"
+	href="javascript:ShowContent('chosenPassiveDescription')"
+	>
+<div
+   id="chosenPassiveDescription"
+   style="display:none;
+      position:absolute;
+      border: 1px groove;
+      background-color: rgba(8, 35, 49, 1);
+      color: #EAE0CD;">
+<i>Choose your passive down below.</i>
+</div>
+<div id="playerStats">
+Attack Damage: <span style="font-weight: bold;" id="displayedAD">0</span><br/>
+Ability Power: <span style="font-weight: bold;" id="displayedAP">0</span><br/>
+Attack Speed: <span style="font-weight: bold;" id="displayedAttackSpeed">0</span><br/>
+Critical Strike Chance: <span style="font-weight: bold;" id="displayedCritChance">0</span><br/>
+Cooldown Reduction: <span style="font-weight: bold;" id="displayedCooldownReduction">0</span><br/>
+<br/>
+</div>
+
+<div id="activesBar">
+<h4>Active Item Spells</h4>
+<img id="frenzyActive" src="files/items/ghostblade.jpg">
+<img id="doomActive" src="files/items/deathfire_grasp.jpg">
+<img id="spellBladeActive" src="files/items/trinity_force.jpg">
+</div>
+</div>
+<div class="big-separator"></div>
+<!--============================================
+	CHOOSING PLAYER PASSIVE
+=============================================-->
+
+<div id="chooseYourPassive">
+
+<div style="text-align: center;">
+<h2>Choose your passive</h2>
+<i>Each champion gives you a different passive bonus for the rest of the game. <br /> Choose carefully, as you can choose a passive only once every season!</i>
+</div>
+
+<br/>
+<br/>
+
+<div id="urfChoice" style="display: none;">
+<button class="passiveButton" onClick="setPassive(4)"><img class="buttonImage" src="files/urf.jpg" width="50" height="50"></button>
+<div class="passiveDes">
+<b> Urf </b><br/>
+<u>Passive bonus : </u><br/> <img src="files/passives/urf_passive.jpg" width="35" height="35"> <b> Big Blue Watery Road: </b><br/>
+<i>Cooldown Reduction is now 80%, and is not affected by items</i>
+</div>
+</div>
+
+<br/>
+<br/>
+
+<div id="gangplankChoice">
+<button class="passiveButton" onClick="setPassive(1)"><img class="buttonImage" src="files/gangplank.jpg" width="50" height="50"></button>
+<div class="passiveDes">
+<b> Gangplank </b><br/>
+<u>Passive bonus : </u><br/> <img src="files/passives/gangplank_passive.jpg" width="35" height="35"><b> Gold generation: </b><br/>
+<i>Your gold per second is increased by 10%. </i>
+</div>
+</div>
+
+<br/>
+<br/>
+<div id="kaykeChoice">
+<button class="passiveButton" onClick="setPassive(2)"><img class="buttonImage" src="files/kayle.jpg" width="50" height="50"></button>
+<div class="passiveDes">
+<b> Kayle </b><br/>
+<u>Passive bonus : </u><br/> <img src="files/passives/kayle_passive.jpg" width="35" height="35"> <b> Hybrid power: </b><br/>
+<i>15% of your AD is added to your AP, 15% of your AP is added to your AD.</i>
+</div>
+</div>
+
+<br/>
+<br/>
+<div id="tryndamereChoice">
+<button class="passiveButton" onClick="setPassive(3)"><img class="buttonImage" src="files/tryndamere.jpg" width="50" height="50"></button>
+<div class="passiveDes">
+<b> Tryndamere </b><br/>
+<u>Passive bonus : </u><br/> <img src="files/passives/tryndamere_passive.jpg" width="35" height="35"> <b> Cursor hit power: </b><br/>
+<i>Your cursor hit power is increased by 20%</i>
+</div>
+</div>
+
+
+
+</div>
+<div id="inventoryAndSpells"> <!-- START of inventory and spells -->
+    <div id="mainInventory"> <!-- START of inventory -->
+    <h4 class="inventoryAndSpellsTitle">Inventory</h4>
+    <div class="itemSlotContainer">
+    <img onClick="useItem(0);" id="itemSlot0" class="itemSlot" src="files/items/empty_slot.jpg">
+    <div class="itemSlotIndicator">1</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator0" class="itemSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="itemSlotContainer">
+    <img onClick="useItem(1);" id="itemSlot1" class="itemSlot" src="files/items/empty_slot.jpg">
+    <div class="itemSlotIndicator">2</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator1" class="itemSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="itemSlotContainer">
+    <img onClick="useItem(2);" id="itemSlot2" class="itemSlot" src="files/items/empty_slot.jpg" >
+    <div class="itemSlotIndicator">3</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator2" class="itemSlotCooldownIndicator"></div>
+    </div>
+
+    <br/>
+
+    <div class="itemSlotContainer">
+    <img onClick="useItem(3);" id="itemSlot3" class="itemSlot" src="files/items/empty_slot.jpg" >
+    <div class="itemSlotIndicator">4</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator3" class="itemSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="itemSlotContainer">
+    <img onClick="useItem(4);" id="itemSlot4" class="itemSlot" src="files/items/empty_slot.jpg" >
+    <div class="itemSlotIndicator">5</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator4" class="itemSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="itemSlotContainer">
+    <img onClick="useItem(5);" id="itemSlot5" class="itemSlot" src="files/items/empty_slot.jpg" >
+    <div class="itemSlotIndicator">6</div>
+    <div style="display: none;" id="itemSlotCooldownIndicator5" class="itemSlotCooldownIndicator"></div>
+    </div>
+    </div> <!-- END of inventory -->
+
+    <div id="mainSpells"> <!-- START OF SPELLS -->
+    <h4 class="inventoryAndSpellsTitle">Spells</h4>
+    <div class="spellSlotContainer">
+    <img onClick="castChampionSpell(0);" id="spellSlot0" class="spellSlot" src="files/spells/empty_slot.jpg">
+    <div class="spellSlotIndicator">Q</div>
+    <div style="display: none;" id="spellSlotCooldownIndicator0" class="spellSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="spellSlotContainer">
+    <img onClick="castChampionSpell(1);" id="spellSlot1" class="spellSlot" src="files/spells/empty_slot.jpg">
+    <div class="spellSlotIndicator">W</div>
+    <div style="display: none;" id="spellSlotCooldownIndicator1" class="spellSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="spellSlotContainer">
+    <img onClick="castChampionSpell(2);" id="spellSlot2" class="spellSlot" src="files/spells/empty_slot.jpg">
+    <div class="spellSlotIndicator">E</div>
+    <div style="display: none;" id="spellSlotCooldownIndicator2" class="spellSlotCooldownIndicator"></div>
+    </div>
+
+    <div class="spellSlotContainer">
+    <img onClick="castChampionSpell(3);" id="spellSlot3" class="spellSlot" src="files/spells/empty_slot.jpg">
+    <div class="spellSlotIndicator">R</div>
+    <div style="display: none;" id="spellSlotCooldownIndicator3" class="spellSlotCooldownIndicator"></div>
+    </div>
+    </div> <!-- END OF SPELLS -->
+
+</div> <!-- END of inventory and spells-->
+
+</div>
+
+<br><br><br><br><br>
+</div>
+
+<!-- *********************
+END OF HIT HIM
+********************** -->
+
+<!-- *********************
+START OF CHAMPIONS
+********************** -->
+
+<div class="tab" id="champions"><!-- CHAMPIONS -->
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x"><span>ABOUT</span></i>
+</div>
+
+
+<h2 class="tabTitle">Champions</h2>
+<i>Hire champions to hit Teemos for you. </i><br/>
+<i>Champions unlock personal "upgrades" at higher levels.</i>
+
+<div class="small-separator"></div>
+<div class="tabContent">
+
+
+<div id="championsList">
+
+<!-- Ryze -->
+<div id="ryzeChampionBlock" class="champion">
+    <span class="championButton" onClick="levelUpChampion(ryze)"><img class="buttonImage" src="files/champion_icons/ryze.jpg" height="80" width="80"></span>
+
+    <div id="ryze" class="championData">
+        <b>Ryze</b>,<i> the Rogue Mage. (AP)</i>
+        <br/>
+        <span id="ryzeLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="ryzeDisplayedGpS"> 0 </span> GpS) </i><br/>
+        Cost:  <span id="ryzeCost" style="font-weight: bold;"></span> gold <br/>
+    </div>
+
+    <br/><br/>
+    <div class="championBuy10">
+        <span id="ryzeBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(ryze, 10)">buy 10 levels</span>
+        Cost:  <span id="ryzeBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+    </div>
+
+    <br/><br/>
+
+
+    <div id="ryzeSpells" class="championSpellsBlock">
+
+        <img src="files/spells/ryze_overload.jpg" width="50" height="50">
+
+        <div id="ryzeOverloadloadDescription" class="spellDescription">
+            <b>Overload</b><br/>
+            Cooldown: <span id="ryzeOverloadEffectiveCooldown"></span>s<br/>
+            Ryze unleashes a runic blast, dealing <span style="color:blue;">magic</span> damage to Teemo. On cast, Overload reduces the cooldown of your other spells by 1s.<br/>
+            Power: <span style="color:blue; font-weight: bold;" id="ryzeOverloadDisplayedPower"></span> (2 + <span id="ryzeOverloadFlatAPScaling"></span> (150% AP) + <span id="ryzeOverloadAPGpSScaling"></span> (0.2% AP per GpS)) (before resistances).<br/>
+        </div>
+        <br/>
+        <div id="ryzeOverloadButtons" class="spellsEquipButtons">
+            <span class="miscButtonSpan" onClick="equipChampionSpell(ryzeOverload);">equip</span>
+            <span class="miscButtonSpan" onClick="unequipChampionSpell(ryzeOverload);">unequip</span>
+        </div>
+
+    </div>
+
+    <br/><br/>
+
+    <div id="ryzeUpgrade18" class="championUpgrade">
+        <b>Faceroll-proof keyboard</b>:<br/>
+        <i>(Doubles champion GpS and AP/AD bonus)</i><br/><br/>
+        <span class="miscButtonSpan" id="ryzeUpgrade18BuyButton" onClick="buyChampionUpgrade(ryzeUpgrade18, ryze);">buy</span><span id="ryzeUpgrade18CostSpan"> Cost: <span id="ryzeUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+    </div>
+</div>
+
+<div class="small-separator-long"></div>
+
+
+<!-- Darius -->
+<div id="dariusChampionBlock" class="champion">
+<span class="championButton" onClick="levelUpChampion(darius)"><img class="buttonImage" src="files/champion_icons/darius.jpg" height="80" width="80"></span>
+<div id="darius" class="championData">
+<b>Darius</b>,<i> the Hand of Noxus. (AD)</i>
+<br/>
+<span id="dariusLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="dariusDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="dariusCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="dariusBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(darius, 10)">buy 10 levels</span>
+Cost:  <span id="dariusBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="dariusUpgrade18" class="championUpgrade">
+<b>The axe effect</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="dariusUpgrade18BuyButton" onClick="buyChampionUpgrade(dariusUpgrade18, darius);">buy</span><span id="dariusUpgrade18CostSpan"> Cost: <span id="dariusUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Rumble -->
+<div id="rumbleChampionBlock" class="champion">
+<span class="championButton" onClick="levelUpChampion(rumble)"><img class="buttonImage" src="files/champion_icons/rumble.jpg" height="80" width="80"></span>
+<div id="rumble" class="championData">
+<b>Rumble</b>,<i>  the Mechanized Menace. (AP)</i>
+<br/>
+<span id="rumbleLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="rumbleDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="rumbleCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="rumbleBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(rumble, 10)">buy 10 levels</span>
+Cost:  <span id="rumbleBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="rumbleUpgrade18" class="championUpgrade">
+<b>Heat monitoring system upgrade</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="rumbleUpgrade18BuyButton" onClick="buyChampionUpgrade(rumbleUpgrade18, rumble);">buy</span><span id="rumbleUpgrade18CostSpan"> Cost: <span id="rumbleUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Riven  -->
+<!-- Unknown-->
+<div id="rivenUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/riven_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+
+<div id="rivenChampionBlock" class="champion" style="display: none;">
+<span class="championButton" onClick="levelUpChampion(riven)"><img class="buttonImage" src="files/champion_icons/riven.jpg" height="80" width="80"></span>
+<div id="riven" class="championData">
+<b>Riven</b>,<i> the Exile. (AD)</i>
+<br/>
+<span id="rivenLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="rivenDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="rivenCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="rivenBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(riven, 10)">buy 10 levels</span>
+Cost:  <span id="rivenBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+    <div id="rivenSpells" class="championSpellsBlock">
+
+        <img src="files/spells/riven_broken_wings.jpg" width="50" height="50">
+
+        <div id="rivenBrokenWingsDescription" class="spellDescription">
+            <b>Broken Wings</b><br/>
+            Cooldown: <span id="rivenBrokenWingsEffectiveCooldown"></span>s<br/>
+            Riven slashes Teemo three times with her sword. Dealing <span style="color:red;">physical</span> damage. The third strike deals <span id="rivenBrokenWingsLastStrikeMultiplier"></span>% damage (200% + 5% per Riven level).<br/>
+            Power (first strike): <span style="color:red; font-weight: bold;" id="rivenBrokenWingsDisplayedPower"></span> (15 + <span id="rivenBrokenWingsFlatADScaling"></span> (200% AD) + <span id="rivenBrokenWingsADGpSScaling"></span> (0.3% AD per GpS)) (before resistances).<br/>
+        </div>
+        <br/>
+        <div id="rivenBrokenWingsButtons" class="spellsEquipButtons">
+            <span class="miscButtonSpan" onClick="equipChampionSpell(rivenBrokenWings);">equip</span>
+            <span class="miscButtonSpan" onClick="unequipChampionSpell(rivenBrokenWings);">unequip</span>
+        </div>
+
+    </div>
+
+    <br/><br/>
+
+<div id="rivenUpgrade18" class="championUpgrade">
+<b>Blade warranty</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="rivenUpgrade18BuyButton" onClick="buyChampionUpgrade(rivenUpgrade18, riven);">buy</span><span id="rivenUpgrade18CostSpan"> Cost: <span id="rivenUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Syndra -->
+<!-- Unknown-->
+<div id="syndraUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/syndra_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="syndraChampionBlock" class="champion" style="display: none;">
+<span class="championButton" onClick="levelUpChampion(syndra)"><img  class="buttonImage" src="files/champion_icons/syndra.jpg" height="80" width="80"></span>
+<div id="syndra" class="championData">
+<b>Syndra</b>,<i> the Dark Sovereign. (AP)</i>
+<br/>
+<span id="syndraLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="syndraDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="syndraCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="syndraBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(syndra, 10)">buy 10 levels</span>
+Cost:  <span id="syndraBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="syndraUpgrade18" class="championUpgrade">
+<b>Juggling lessons</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="syndraUpgrade18BuyButton" onClick="buyChampionUpgrade(syndraUpgrade18, syndra);">buy</span><span id="syndraUpgrade18CostSpan"> Cost: <span id="syndraUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+
+<!-- Pantheon -->
+<!-- Unknown-->
+<div id="pantheonUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/pantheon_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="pantheonChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(pantheon)"><img class="buttonImage" src="files/champion_icons/pantheon.jpg" height="80" width="80"></span>
+<div id="pantheon" class="championData">
+<b>Pantheon</b>,<i> The Artisan of War. (AD)</i>
+<br/>
+<span id="pantheonLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="pantheonDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="pantheonCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="pantheonBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(pantheon, 10)">buy 10 levels</span>
+Cost:  <span id="pantheonBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="pantheonUpgrade18" class="championUpgrade">
+<b>Bakery Course</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="pantheonUpgrade18BuyButton" onClick="buyChampionUpgrade(pantheonUpgrade18, pantheon);">buy</span><span id="pantheonUpgrade18CostSpan"> Cost: <span id="pantheonUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Mordekaiser -->
+<!-- Unknown-->
+<div id="mordekaiserUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/mordekaiser_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="mordekaiserChampionBlock" class="champion" style="display: none;">
+
+    <span class="championButton" onClick="levelUpChampion(mordekaiser)"><img class="buttonImage" src="files/champion_icons/mordekaiser.jpg" height="80" width="80"></span>
+    <div id="mordekaiser" class="championData">
+    <b>Mordekaiser</b>,<i> the Master of Metal. (AP)</i>
+    <br/>
+    <span id="mordekaiserLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="mordekaiserDisplayedGpS"> 0 </span> GpS) </i><br/>
+    Cost:  <span id="mordekaiserCost" style="font-weight: bold;"></span> gold <br/>
+    </div>
+
+    <br/><br/>
+    <div class="championBuy10">
+    <span id="mordekaiserBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(mordekaiser, 10)">buy 10 levels</span>
+    Cost:  <span id="mordekaiserBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+    </div>
+    <br/><br/>
+
+        <div id="mordekaiserSpells" class="championSpellsBlock">
+
+            <img src="files/spells/mordekaiser_children_of_the_grave.jpg" width="50" height="50">
+            <div id="mordekaiserChildrenOfTheGraveDescription" class="spellDescription">
+                <b>Children of the Grave</b><br/>
+                Cooldown: <span id="mordekaiserChildrenOfTheGraveCooldown"></span>s<br/>
+                Mordekaiser curses Teemo, dealing <span style="color:blue;">magic</span> damage. Half the damage is done initially, the other half over the next 10 seconds.<br/>During the curse, you gain <span style="color:blue" id="mordekaiserChildrenOfTheGraveBonusAP"></span> bonus AP (100 + 20% AP).<br/>
+                Power (total): <span style="color:blue; font-weight: bold;" id="mordekaiserChildrenOfTheGraveDisplayedPower"></span> (4000 + <span id="mordekaiserChildrenOfTheGraveFlatAPScaling"></span> (300% AP) + <span id="mordekaiserChildrenOfTheGraveAPGpSScaling"></span> (0.8% AP per GpS)) (before resistances).<br/>
+            </div>
+            <br/>
+            <div id="mordekaiserChildrenOfTheGraveButtons" class="spellsEquipButtons">
+                <span class="miscButtonSpan" onClick="equipChampionSpell(mordekaiserChildrenOfTheGrave);">equip</span>
+                <span class="miscButtonSpan" onClick="unequipChampionSpell(mordekaiserChildrenOfTheGrave);">unequip</span>
+            </div>
+
+        </div>
+
+        <br/><br/>
+
+    <div id="mordekaiserUpgrade18" class="championUpgrade">
+    <b>Ticket for Metallica concert</b>:<br/>
+    <i>(doubles champion GpS and AP/AD bonus)</i><br/>
+    <span class="miscButtonSpan" id="mordekaiserUpgrade18BuyButton" onClick="buyChampionUpgrade(mordekaiserUpgrade18, mordekaiser);">buy</span><span id="mordekaiserUpgrade18CostSpan"> Cost: <span id="mordekaiserUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+    </div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Lee Sin -->
+<!-- Unknown-->
+<div id="leeSinUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/lee_sin_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="leeSinChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(leeSin)"><img class="buttonImage" src="files/champion_icons/lee_sin.jpg" height="80" width="80"></span>
+<div id="leeSin" class="championData">
+<b>Lee Sin</b>,<i> the Blind Monk (AD).</i>
+<br/>
+<span id="leeSinLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="leeSinDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="leeSinCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="leeSinBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(leeSin, 10)">buy 10 levels</span>
+Cost:  <span id="leeSinBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="leeSinUpgrade18" class="championUpgrade">
+<b>Leesyndrome cure</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="leeSinUpgrade18BuyButton" onClick="buyChampionUpgrade(leeSinUpgrade18, leeSin);">buy</span><span id="leeSinUpgrade18CostSpan"> Cost: <span id="leeSinUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Kassadin -->
+<!-- Unknown-->
+<div id="kassadinUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/kassadin_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="kassadinChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(kassadin)"><img class="buttonImage" src="files/champion_icons/kassadin.jpg" height="80" width="80"></span>
+<div id="kassadin" class="championData">
+<b>Kassadin</b>,<i> the Void Walker (AP).</i>
+<br/>
+<span id="kassadinLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="kassadinDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="kassadinCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="kassadinBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(kassadin, 10)">buy 10 levels</span>
+Cost:  <span id="kassadinBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="kassadinUpgrade18" class="championUpgrade">
+<b>Champion select ban removal</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="kassadinUpgrade18BuyButton" onClick="buyChampionUpgrade(kassadinUpgrade18, kassadin);">buy</span><span id="kassadinUpgrade18CostSpan"> Cost: <span id="kassadinUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Zed -->
+<!-- Unknown-->
+<div id="zedUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/zed_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="zedChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(zed)"><img class="buttonImage" src="files/champion_icons/zed.jpg" height="80" width="80"></span>
+<div id="zed" class="championData">
+<b>Zed</b>,<i> the Master of Shadows (AD).</i>
+<br/>
+<span id="zedLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="zedDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="zedCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="zedBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(zed, 10)">buy 10 levels</span>
+Cost:  <span id="zedBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+        <div id="zedSpells" class="championSpellsBlock">
+
+            <img src="files/spells/zed_death_mark.jpg" width="50" height="50">
+            <div id="zedDeathMarkDescription" class="spellDescription">
+                <b>Death Mark</b><br/>
+                Cooldown: <span id="zedDeathMarkEffectiveCooldown"></span>s<br/>
+                Zed marks Teemo for death. For the next 3 seconds, the mark stores a percentage of all damage dealt to Teemo from all sources. At the end of the duration, the mark detonates dealing <span style="color:red;">physical</span> damage. <br/>
+
+                Power : <span style="color:red; font-weight: bold;" id="zedDeathMarkDisplayedPower"></span> (3 million + <span id="zedDeathMarkADGpSScaling"></span> (1% AD per GpS)) + <span id="zedDeathMarkDamageStorage"></span>% (80% + 10% per Zed level) of the damage dealt during its duration (before resistances).<br/>
+            </div>
+            <br/>
+            <div id="zedDeathMarkButtons" class="spellsEquipButtons">
+                <span class="miscButtonSpan" onClick="equipChampionSpell(zedDeathMark);">equip</span>
+                <span class="miscButtonSpan" onClick="unequipChampionSpell(zedDeathMark);">unequip</span>
+            </div>
+
+        </div>
+
+        <br/><br/>
+
+<div id="zedUpgrade18" class="championUpgrade">
+<b>Deluminator</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="zedUpgrade18BuyButton" onClick="buyChampionUpgrade(zedUpgrade18, zed);">buy</span><span id="zedUpgrade18CostSpan"> Cost: <span id="zedUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Heimerdinger -->
+<!-- Unknown-->
+<div id="heimerdingerUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/heimerdinger_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="heimerdingerChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(heimerdinger)"><img class="buttonImage" src="files/champion_icons/heimerdinger.jpg" height="80" width="80"></span>
+<div id="heimerdinger" class="championData">
+<b>Heimerdinger</b>,<i> the Revered Inventor (AP).</i>
+<br/>
+<span id="heimerdingerLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="heimerdingerDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="heimerdingerCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="heimerdingerBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(heimerdinger, 10)">buy 10 levels</span>
+Cost:  <span id="heimerdingerBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="heimerdingerUpgrade18" class="championUpgrade">
+<b>Dong-raising technology</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="heimerdingerUpgrade18BuyButton" onClick="buyChampionUpgrade(heimerdingerUpgrade18, heimerdinger);">buy</span><span id="heimerdingerUpgrade18CostSpan"> Cost: <span id="heimerdingerUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Draven -->
+<!-- Unknown-->
+<div id="dravenUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/draven_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="dravenChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(draven)"><img class="buttonImage" src="files/champion_icons/draven.jpg" height="80" width="80"></span>
+<div id="draven" class="championData">
+<b>Draven</b>,<i> the Glorious Executioner (AD).</i>
+<br/>
+<span id="dravenLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="dravenDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="dravenCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="dravenBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(draven, 10)">buy 10 levels</span>
+Cost:  <span id="dravenBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="dravenUpgrade18" class="championUpgrade">
+<b>Another Draven's axes</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="dravenUpgrade18BuyButton" onClick="buyChampionUpgrade(dravenUpgrade18, draven);">buy</span><span id="dravenUpgrade18CostSpan"> Cost: <span id="dravenUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+<!-- Akali -->
+<!-- Unknown-->
+<div id="akaliUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/akali_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="akaliChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(akali)"><img class="buttonImage" src="files/champion_icons/akali.jpg" height="80" width="80"></span>
+<div id="akali" class="championData">
+<b>Akali</b>,<i> the Fist of Shadow (Hybrid).</i>
+<br/>
+<span id="akaliLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="akaliDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="akaliCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="akaliBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(akali, 10)">buy 10 levels</span>
+Cost:  <span id="akaliBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="akaliUpgrade18" class="championUpgrade">
+<b>Hextech Gunblade stacking</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="akaliUpgrade18BuyButton" onClick="buyChampionUpgrade(akaliUpgrade18, akali);">buy</span><span id="akaliUpgrade18CostSpan"> Cost: <span id="akaliUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+<div class="small-separator-long"></div>
+
+
+<!-- AurelionSol -->
+<!-- Unknown-->
+<div id="aurelionSolUnknownBlock" class="championUnknown">
+
+<span class="championButton"><img class="buttonImage" src="files/champion_icons/aurelionSol_unknown.jpg" height="80" width="80"></span>
+<div class="championData">
+<b>???</b><i></i>
+<br/>
+<span  style="font-weight: bold;"> Not owned  </span><br/>
+Cost:  <span style="font-weight: bold;">???</span> gold <br/>
+</div>
+</div>
+
+<div id="aurelionSolChampionBlock" class="champion" style="display: none;">
+
+<span class="championButton" onClick="levelUpChampion(aurelionSol)"><img class="buttonImage" src="files/champion_icons/aurelionSol.jpg" height="80" width="80"></span>
+<div id="aurelionSol" class="championData">
+<b>Aurelion Sol</b>,<i> the Star Forger (AP).</i>
+<br/>
+<span id="aurelionSolLevel"  style="font-weight: bold;"> Not owned  </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Currently: <span style="font-weight: bold;" id="aurelionSolDisplayedGpS"> 0 </span> GpS) </i><br/>
+Cost:  <span id="aurelionSolCost" style="font-weight: bold;"></span> gold <br/>
+</div>
+
+<br/><br/>
+<div class="championBuy10">
+<span id="aurelionSolBuy10Button" class="miscButtonSpan" onClick="levelUpChampionXTimes(aurelionSol, 10)">buy 10 levels</span>
+Cost:  <span id="aurelionSolBuy10Cost" style="font-weight: bold;"></span> gold <br/>
+</div>
+<br/><br/>
+
+<div id="aurelionSolUpgrade18" class="championUpgrade">
+<b>Clockwise Spinning</b>:<br/>
+<i>(doubles champion GpS and AP/AD bonus)</i><br/>
+<span class="miscButtonSpan" id="aurelionSolUpgrade18BuyButton" onClick="buyChampionUpgrade(aurelionSolUpgrade18, aurelionSol);">buy</span><span id="aurelionSolUpgrade18CostSpan"> Cost: <span id="aurelionSolUpgrade18Cost" style="font-weight: bold;"></span> gold</span>
+</div>
+</div>
+</div>
+</div>
+<br><br><br><br><br>
+</div>
+
+<!-- *********************
+END OF CHAMPIONS
+********************** -->
+
+<!-- *********************
+START OF ITEMS
+********************** -->
+
+<div class="tab" id="itemShop"><!-- ITEM SHOP -->
+
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x"><span>ABOUT</span></i>
+</div>
+
+<h2 class="tabTitle">Item Shop</h2>
+<i>Buy items to empower your hits and your champions.<br/>
+You can have at most 6 items. <br/><br/>
+TIPS:<br/>
+-You can sell items for 50% of their value.<br/>
+-Use item actives by clicking on the inventory in the click page.</i><br/>
+<div class="small-separator"></div>
+<div class="tabContent">
+
+<!-- Sell all items button -->
+
+<div class="itemData">
+	<span class="miscButtonSpan" onClick="sellAllItems();">Sell all Items</span>
+<!--    You will get <span style="font-weight: bold;" id="goldGainedFromSellingAllItems"></span> gold back.-->
+</div>
+
+
+<br/>
+
+<!-- Start of Items list -->
+
+<div id="tier1Items" class="itemTier">
+<h3>Tier 1: Starting Items</h3>
+
+<!-- Doran's Blade -->
+<b>Doran's Blade</b><br/>
+<div>
+<span class="itemButton" onClick="buyItem(doransBlade);">
+	<img class="buttonImage" src="files/items/dorans_blade.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="doransBladeCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="doransBladeNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(doransBlade);">sell</span>
+</div>
+
+</div>
+<div class="description" id="doransBladeDescription">
+<u>Stats: </u><br/>
+<i>+1 flat cursor hit power.</i>
+</div>
+<div class="small-separator-long"></div>
+<br/>
+
+<!-- Doran's Ring -->
+
+<b>Doran's Ring</b><br/>
+<div>
+
+<span class="itemButton" onClick="buyItem(doransRing);">
+	<img class="buttonImage" src="files/items/dorans_ring.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="doransRingCost" style="font-weight:bold;"></span> gold   <br/>
+	Owned: <span id="doransRingNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(doransRing);">sell</span> <br/>
+</div>
+</div>
+<div class="description" id="doransRingDescription">
+<u>Stats: </u><br/>
+<i>
++2 flat GpS.
+</i>
+</div>
+
+
+
+</div> <!-- End of tier 1 items -->
+<div class="small-separator"></div>
+<div id="tier2Items"  class="itemTier">
+<h3>Tier 2: <span>Intermediate</span></h3>
+
+<!-- The Brutalizer -->
+<div>
+<b>The Brutalizer</b> <br/>
+<span class="itemButton" onClick="buyItem(brutalizer);">
+	<img class="buttonImage" src="files/items/brutalizer.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="brutalizerCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="brutalizerNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(brutalizer);">sell</span>
+</div>
+</div>
+<div class="description" id="brutalizerDescription">
+<u>Stats: </u><br/>
+<i>
++20 AD.<br/>
++10% cooldown reduction (UNIQUE).<br/>
++10 flat armor penetration (UNIQUE).
+</i>
+</div>
+
+
+
+<div class="small-separator-long"></div>
+<br/>
+
+
+<!-- Haunting Guise -->
+<div>
+<b>Haunting Guise</b> <br/>
+<span class="itemButton" onClick="buyItem(hauntingGuise);">
+<img class="buttonImage" src="files/items/haunting_guise.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="hauntingGuiseCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="hauntingGuiseNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(hauntingGuise);">sell</span>
+</div>
+</div>
+<div class="description" id="hauntingGuiseDescription">
+<u>Stats: </u><br/>
+<i>
++30 AP. <br/>
++15 flat magic penetration (UNIQUE).
+</i>
+</div>
+<div class="small-separator-long"></div>
+<br/>
+
+
+<!-- The Lightbringer -->
+<div>
+<b>The Lightbringer</b> <br/>
+<span class="itemButton" onClick="buyItem(lightbringer);">
+<img class="buttonImage" src="files/items/lightbringer.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="lightbringerCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="lightbringerNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(lightbringer);">sell</span>
+</div>
+</div>
+<div class="description" id="lightbringerDescription">
+<u>Stats: </u><br/>
+<i>
++40 AD. <br/>
++40% attack speed.<br/>
++10% critical strike chance.<br/>
+- UNIQUE PASSIVE - <b>INSPECT:</b><br/>
+&nbsp;&nbsp;&nbsp; You can now see Teemo's current resistances.
+
+</i>
+</div>
+<div class="small-separator-long"></div>
+<br/>
+
+<!-- Last Whisper -->
+<div>
+<b>Last Whisper</b> <br/>
+<span class="itemButton" onClick="buyItem(lastWhisper);">
+<img class="buttonImage" src="files/items/last_whisper.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="lastWhisperCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="lastWhisperNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(lastWhisper);">sell</span>
+</div>
+</div>
+<div class="description" id="lastWhisperDescription">
+<u>Stats: </u><br/>
+<i>
++50 AD. <br/>
++60% Armor Penetration (UNIQUE).
+</i>
+</div>
+<div class="small-separator-long"></div>
+<br/>
+
+<!-- Void Staff -->
+<div>
+<b>Void Staff</b> <br/>
+<span class="itemButton" onClick="buyItem(voidStaff);">
+<img class="buttonImage" src="files/items/void_staff.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+	Cost: <span id="voidStaffCost" style="font-weight:bold;"></span> gold  <br/>
+	Owned: <span id="voidStaffNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(voidStaff);">sell</span>
+</div>
+</div>
+<div class="description" id="voidStaffDescription">
+<u>Stats: </u><br/>
+<i>
++80 AP. <br/>
++60% Magic Penetration (UNIQUE).
+</i>
+</div>
+<br/>
+<br/>
+
+
+
+</div> <!-- End of Tier 2 -->
+
+<div class="small-separator"></div>
+<div id="tier3Items" class="itemTier">
+<h3>Tier 3: <span>Legendary</span></h3>
+
+
+<!-- The Bloodthirster -->
+<div>
+<b>The Bloodthirster</b> <br/>
+<span class="itemButton" onClick="buyItem(bloodthirster);">
+	<img class="buttonImage" src="files/items/bloodthirster.jpg" width="65" height="65">
+	</span>
+<div class="itemData">
+Cost: <span id="bloodthirsterCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="bloodthirsterNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(bloodthirster);">sell</span>
+</div>
+</div>
+<div class="description" id="bloodthirsterDescription">
+<u>Stats: </u><br/>
+<i>
++80 AD.<br/>
++10% AD (UNIQUE).<br/>
+</i>
+</div>
+
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Rabadon's Deathcap</b> <br/>
+<span class="itemButton" onClick="buyItem(rabadonsDeathcap);">
+	<img class="buttonImage" src="files/items/rabadons_deathcap.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="rabadonsDeathcapCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="rabadonsDeathcapNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(rabadonsDeathcap);">sell</span>
+</div>
+</div>
+<div class="description" id="rabadonsDeathcapDescription">
+<u>Stats: </u><br/>
+<i>
++ 150 AP.<br/>
++15% AP (UNIQUE).
+</i>
+</div>
+
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Phantom Dancer</b> <br/>
+<span class="itemButton" onClick="buyItem(phantomDancer);">
+	<img class="buttonImage" src="files/items/phantom_dancer.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="phantomDancerCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="phantomDancerNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(phantomDancer);">sell</span>
+</div>
+</div>
+<div class="description" id="phantomDancerDescription">
+<u>Stats: </u><br/>
+<i>
++55% attack speed.<br/>
++30% critical strike chance.
+</i>
+</div>
+
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Nashor's Tooth</b> <br/>
+<span class="itemButton" onClick="buyItem(nashorsTooth);">
+	<img class="buttonImage" src="files/items/nashors_tooth.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="nashorsToothCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="nashorsToothNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(nashorsTooth);">sell</span>
+</div>
+</div>
+<div class="description" id="nashorsToothDescription">
+<u>Stats: </u><br/>
+<i>
++50 AP.<br/>
++55% attack speed.<br/>
++20% cooldown reduction (UNIQUE).
+</i>
+</div>
+
+
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Trinity Force</b> <br/>
+<span class="itemButton" onClick="buyItem(trinityForce);">
+<img class="buttonImage" src="files/items/trinity_force.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="trinityForceCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="trinityForceNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(trinityForce);">sell</span>
+</div>
+
+<div class="itemSpell" id="trinityForceSpellBlade">
+<b>Spellblade</b> cooldown: <br/><br/>
+<span id="spellBladeCooldown" style="color:green; font-weight:bold;"> available </span>
+</div>
+
+</div>
+<div class="description" id="trinityForceDescription">
+<u>Stats: </u><br/>
+<i>
++30 AD. <br/>
++30 AP. <br/>
++20% cooldown reduction (UNIQUE) <br/>
++10% critical strike chance. <br/>
+- UNIQUE PASSIVE - <b>SPELLBLADE:</b><br/>
+&nbsp;&nbsp;&nbsp;Your next Teemo hit will be worth an additional
+30 seconds of your GpS. (10 minutes base cooldown).
+</i>
+</div>
+
+
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Youmuu's Ghostblade</b> <br/>
+<span class="itemButton" onClick="buyItem(ghostblade);">
+	<img class="buttonImage" src="files/items/ghostblade.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="ghostbladeCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="ghostbladeNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(ghostblade);">sell</span>
+</div>
+
+
+<div class="itemSpell" id="ghostbladeFrenzy">
+<b>Frenzy</b> cooldown: <br/><br/>
+<span id="frenzyCooldown" style="color:green; font-weight:bold;"> available </span>
+</div>
+<div class="itemSpellActive" id="ghostbladeFrenzyActive" style="display:none;">
+<span id="frenzyTimeLeft" style="font-weight:bold;"></span>
+</div>
+<div class="description" id="ghostbladeDescription">
+<u>Stats: </u><br/>
+<i>
++40 AD.<br/>
++15% critical strike chance. <br/>
++10% cooldown reduction <br/>
+- UNIQUE ACTIVE - <b>FRENZY:</b><br/>
+&nbsp;&nbsp;&nbsp;Your cursor's power is doubled for 10 seconds (5 minutes base cooldown).
+</i>
+</div>
+</div>
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Infinity Edge</b> <br/>
+<span class="itemButton" onClick="buyItem(infinityEdge);">
+	<img class="buttonImage" src="files/items/infinity_edge.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="infinityEdgeCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="infinityEdgeNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(infinityEdge);">sell</span>
+</div>
+</div>
+<div class="description" id="infinityEdgeDescription">
+<u>Stats: </u><br/>
+<i>
++80 AD. <br/>
++20% critical strike chance. (UNIQUE) <br/>
+-UNIQUE PASSIVE - <b>BRUTAL STRIKES:</b><br/>
+&nbsp;&nbsp;&nbsp;+50% critical strike damage.<br/>
+</i>
+</div>
+
+<div class="small-separator-long"></div>
+<br/>
+<div>
+<b>Deathfire Grasp</b> <br/>
+<span class="itemButton" onClick="buyItem(deathfireGrasp);">
+	<img class="buttonImage" src="files/items/deathfire_grasp.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="deathfireGraspCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="deathfireGraspNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellItem(deathfireGrasp);">sell</span>
+</div>
+
+
+<div class="itemSpell" id="deathfireGraspDoom">
+<b>Doom</b> cooldown: <br/><br/>
+<span id="doomCooldown" style="color:green; font-weight:bold;"> available </span>
+</div>
+<div class="itemSpellActive" id="deathfireGraspDoomActive" style="display:none;">
+<span id="doomTimeLeft" style="font-weight:bold;"></span>
+
+</div>
+<div class="description" id="deathfireGraspDescription">
+<u>Stats: </u><br/>
+<i>
++120 AP.<br/>
++10% cooldown reduction <br/>
+- UNIQUE ACTIVE - <b>DOOM:</b><br/>
+&nbsp;&nbsp;&nbsp;Your AP-generated GpS is increased by 50% for one minute (7 minutes base cooldown).
+</i>
+</div>
+</div>
+
+
+<br/>
+</div> <!-- End of Tier 3 -->
+
+<div class="small-separator"></div>
+<div id="tierRIP">
+<div  style="text-align: center;">
+<h3><span>R.I.P.</span> Tier</h3>
+<i>Technically, these items are not in the game anymore, so they won't take up place in your inventory.</i>
+</div>
+
+<br/>
+
+<div>
+<b>Bonetooth Necklace</b> <br/>
+<span class="itemButton" onClick="buyRipItem(bonetoothNecklace);">
+	<img id="bonetoothNecklaceIcon" class="buttonImage" src="files/items/bonetooth_necklace_1.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="bonetoothNecklaceCost" style="font-weight:bold;"></span> gold <br/>
+Owned: <span id="bonetoothNecklaceNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellRipItem(bonetoothNecklaceGold);">sell</span>
+</div>
+</div>
+<div class="description" id="bonetoothNecklaceDescription">
+<u>Stats: </u><br/>
+<i>
+Increases Gps based on the amount of achievements unlocked<br/>
+("No worries, you won't lose stacks upon death")
+</i>
+</div>
+
+<div class="small-separator-long"></div>
+<br/>
+
+<div>
+<b>Heart of Gold</b> <br/>
+<span class="itemButton" onClick="buyRipItem(heartOfGold);">
+	<img class="buttonImage" src="files/items/heart_of_gold.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="heartOfGoldCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="heartOfGoldNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellRipItem(heartOfGold);">sell</span>
+</div>
+</div>
+<div class="description" id="heartOfGoldDescription">
+<u>Stats: </u><br/>
+<i>
+Increases global additive Gold per Second<br/>
+("Nexus Blitz does not count")
+</i>
+</div>
+
+<div class="small-separator-long"></div>
+<br/>
+
+<div>
+<b>Philosopher's Stone</b> <br/>
+<span class="itemButton" onClick="buyRipItem(philosophersStone);">
+	<img class="buttonImage" src="files/items/philosophers_stone.jpg" width="65" height="65">
+</span>
+<div class="itemData">
+Cost: <span id="philosophersStoneCost" style="font-weight:bold;"></span> gold  <br/>
+Owned: <span id="philosophersStoneNumber" style="font-weight:bold;"> 0 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="miscButtonSpan" onClick="sellRipItem(philosophersStone);">sell</span>
+</div>
+</div>
+<div class="description" id="philosophersStoneDescription">
+<u>Stats: </u><br/>
+<i>
+Increases global additive Gold per Second<br/>
+("Nexus Blitz does not count")
+</i>
+</div>
+<br/>
+<br/>
+
+
+</div> <!-- End of RIP Tier -->
+
+</div>
+<br><br><br><br><br>
+</div>
+
+<!-- *********************
+END OF ITEMS
+********************** -->
+
+<!-- *********************
+START OF STATS
+********************** -->
+
+<div class="tab" id="stats"><!-- STATS -->
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x"><span>ABOUT</span></i>
+</div>
+
+<h2 class="tabTitle">Stats</h2>
+<div class="small-separator"></div>
+
+<div class="tabContent">
+<ul>
+<img id="musclesLevelIcon" src="files/muscles/annie.jpg" height="30" width="30" alt="muscles">
+Muscles level: <span id="musclesLevel">Annie</span>
+<i class="statDescription">(Click power multiplier: <span id="displayedMusclesMultiplier"></span>%)</i>
+<li>Attack Damage: <span style="font-weight:bold;" id="displayedAD2">0</span> <i class="statDescription"> (increases GpS of your AD champions)</i></li>
+<li>Ability Power: <span style="font-weight:bold;" id="displayedAP2">0</span> <i class="statDescription"> (increases GpS of your AP champions)</i></li>
+<li>Armor Penetration: <span style="font-weight:bold;" id="displayedArmorPenetration">0</span> <i class="statDescription"> (ignore a portion of Teemo's armor)</i></li>
+<li>Magic Penetration: <span style="font-weight:bold;" id="displayedMagicPenetration">0</span> <i class="statDescription"> (ignore a portion of Teemo's magic resistance)</i></li>
+<li>Critical Strike Chance: <span id="displayedCritChance2" style="font-weight:bold;"> 0 </span> <i class="statDescription"> (the chance that your mouse clicks will critical strike)</i></li>
+<li>Attack Speed: <span id="displayedAttackSpeed2" style="font-weight:bold;">0</span> <i class="statDescription"> (makes automatic clicks that can crit and proc on-hit effects)</i></li>
+<li>Cooldown Reduction: <span id="displayedCooldownReduction2" style="font-weight:bold;"> 0</span> <i class="statDescription"> (reduces cooldown of your spells)</i></li>
+<li>Critical Strike Modifier: <span id="displayedCriticalStrikeModifier" style="font-weight:bold;">200%</span> <i class="statDescription"> (strength of your critical strikes)</i></li>
+<br/>
+<li>Teemo Armor: <span id="displayedTeemoArmor" style="font-weight:bold; color:red;">?</span></li>
+<li>Teemo Magic Resistance: <span id="displayedTeemoMagicResistance" style="font-weight:bold; color:red;">?</span></li>
+<br/><br/>
+<li>Teemos slain (all time): <span style="font-weight:bold;" id="allTimeTeemosSlain">0</span></li>
+<li>Poros: <span style="font-weight:bold;" id="displayedNumberOfPoros">0</span></li>
+<li>Season <span id="displayedSeasonCount" style="font-weight:bold;">1</span></li>
+</ul>
+</div>
+
+<br><br><br><br><br>
+</div>
+
+<!-- *********************
+END OF STATS
+********************** -->
+
+
+<!-- *********************
+START OF UNLOCK
+********************** -->
+
+<div class="tab" id="unlock"><!-- UNLOCK -->
+<!--
+<div class="social">
+<a href="https://www.facebook.com/pages/Teemo-Slayer/275012979368479" target="_blank">
+<img src="files/fbIcon.jpg" height="80" width="80">
+</a>
+</div>
+-->
+
+
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x"><span>ABOUT</span></i>
+</div>
+
+<h2 class="tabTitle">Unlock</h2>
+
+<div class="small-separator"></div>
+<div class="tabContent">
+<h3>Skin shop <span id="skinsMin" class="minimize"><i class="fa fa-chevron-up"></i></span><span id="skinsMax" class="expand" style="display: none;"><i class="fa fa-chevron-down"></i></span></h3>
+
+<div id="teemoSkinsList">
+
+<i>A cuter Teemo obviously implies that you gain more gold when hitting him!</i><br />
+<i>Slay lots of Teemos to unlock skins.</i><br/><br/>
+<br/> <br />
+<div style="text-align: center; font-size: 150%;" id="noSkins">
+<i>No skins unlocked yet.</i>
+</div>
+<br/>
+<span id="unequipSkinsButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(classicTeemo);">unequip skins</span>
+<br/><br/><br/>
+<!-- Recon Teemo -->
+<div id="reconTeemo" class="teemoSkin">
+<b style="color:brown;">Recon Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/recon_teemo.jpg" alt="reconTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="reconTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(reconTeemo);">buy skin</span><span id="reconTeemoCostSpan">(Cost : <span id="reconTeemoCost" style="font-weight: bold;">1 million</span> gold.)</span>
+<span id="reconTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(reconTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"They just painted his face!"</i>
+</div>
+</div>
+<br/><br/>
+
+
+
+<!-- Cottontail Teemo -->
+<div id="cottontailTeemo" class="teemoSkin">
+<b style="color:brown;">Cottontail Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/cottontail_teemo.jpg" alt="cottontailTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="cottontailTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(cottontailTeemo);">buy skin</span><span id="cottontailTeemoCostSpan"> Cost: <span id="cottontailTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="cottontailTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(cottontailTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"Eggcellent!"</i>
+</div>
+</div>
+<br/><br/>
+<!-- Astronaut Teemo -->
+<div id="astronautTeemo" class="teemoSkin">
+<b style="color:brown;">Astronaut Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/astronaut_teemo.jpg" alt="astronautTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="astronautTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(astronautTeemo);">buy skin</span><span id="astronautTeemoCostSpan"> Cost: <span id="astronautTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="astronautTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(astronautTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-""</i>
+</div>
+</div>
+<br/><br/>
+<!-- Super Teemo -->
+<div id="superTeemo" class="teemoSkin">
+<b style="color:brown;">Super Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/super_teemo.jpg" alt="superTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="superTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(superTeemo);">buy skin</span><span id="superTeemoCostSpan"> Cost: <span id="superTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="superTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(superTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"It's a Valor... It's a Corki..."</i>
+</div>
+</div>
+<br/><br/>
+<!-- Badger Teemo -->
+<div id="badgerTeemo" class="teemoSkin">
+<b style="color:brown;">Badger Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/badger_teemo.jpg" alt="badgerTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="badgerTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(badgerTeemo);">buy skin</span><span id="badgerTeemoCostSpan"> Cost: <span id="badgerTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="badgerTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(badgerTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"Need. More. Skins"</i>
+</div>
+</div>
+<br/><br/>
+
+<!-- Panda Teemo -->
+<div id="pandaTeemo" class="teemoSkin">
+<b style="color:brown;">Panda Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/panda_teemo.jpg" alt="pandaTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="pandaTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(pandaTeemo);">buy skin</span><span id="pandaTeemoCostSpan"> Cost: <span id="pandaTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="pandaTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(pandaTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"Deadly cute!"</i>
+</div>
+</div>
+<br/><br/>
+
+<!-- Omega Squad Teemo-->
+<div id="omegaSquadTeemo" class="teemoSkin">
+<b style="color:brown;">Omega Squad Teemo</b><br/>
+<img class="teemoSkinIcon" src="files/teemoSkins/omega_squad_teemo.jpg" alt="omegaSquadTeemo" height="80" width="80">
+<div class="skinDescription">
+
+<span id="omegaSquadTeemoBuyButton" class="miscButtonSpan" onClick="buyTeemoSkin(omegaSquadTeemo);">buy skin</span><span id="omegaSquadTeemoCostSpan"> Cost: <span id="omegaSquadTeemoCost" style="font-weight: bold;"></span> gold</span>
+<span id="omegaSquadTeemoUseButton" class="miscButtonSpan" style="display: none;" onClick="useTeemoSkin(omegaSquadTeemo);">equip skin</span>
+<br/>
+Greatly increases total GpS. <br/><br/>
+<i>-"Survive here a week, then you get a name."</i>
+</div>
+</div>
+
+
+
+</div> <!-- end of teemo skins list -->
+
+<div class="big-separator"></div>
+<div id="achievements">
+<h3>Achievements (<span id="numofUnlockedAchievements">0</span>/<span id="numofAllAchievements">23</span>)</h3>
+
+
+
+<!-- First Blood -->
+<div id="firstBlood" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="firstBloodLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="firstBloodDescription" class="achievementDescription">
+FIRST BLOOD <i>(Kill one Teemo)</i> <br/>
+<i>"Now recall and buy boots."</i>
+</div>
+<br />
+<!-- Recruit -->
+<div id="recruit" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="recruitLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="recruitDescription" class="achievementDescription">
+RECRUIT <i>(Kill 10 Teemos)</i> <br/>
+<i>"That's 2 Pentakills!"</i>
+</div>
+<br />
+<!-- Yordle Hater -->
+<div id="yordleHater" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="yordleHaterLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="yordleHaterDescription" class="achievementDescription">
+YORDLE HATER <i>(Kill 1000 Teemos)</i> <br/>
+<i>"You really hate him"</i>
+</div>
+<br />
+<!-- Bronze Slayer -->
+<div id="bronzeSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="bronzeSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="bronzeSlayerDescription" class="achievementDescription">
+BRONZE SLAYER <i>(Kill 1 million Teemos)</i> <br/>
+<i>"Time to rank up!"</i>
+</div>
+<br />
+<!-- Silver Slayer -->
+<div id="silverSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="silverSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="silverSlayerDescription" class="achievementDescription">
+SILVER SLAYER <i>(Kill 1 billion Teemos)</i> <br/>
+<br/>
+</div>
+<br />
+<!-- Gold Slayer -->
+<div id="goldSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="goldSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="goldSlayerDescription" class="achievementDescription">
+GOLD SLAYER <i>(Kill 1 trillion Teemos)</i> <br/>
+<br/>
+</div>
+<br />
+<!-- Platinum Slayer -->
+<div id="platinumSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="platinumSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="platinumSlayerDescription" class="achievementDescription">
+PLATINUM SLAYER <i>(Kill 1 quadrillion Teemos)</i> <br/>
+<br/>
+</div>
+<br />
+<!-- Diamond Slayer -->
+<div id="diamondSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="diamondSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="diamondSlayerDescription" class="achievementDescription">
+DIAMOND SLAYER <i>(Kill 1 quintillion Teemos)</i> <br/>
+<i>"You monster!"</i>
+</div>
+<br />
+<!-- Challenger Slayer -->
+<div id="challengerSlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="challengerSlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="challengerSlayerDescription" class="achievementDescription">
+CHALLENGER SLAYER <i>(Kill 1 sextillion Teemos)</i> <br/>
+<i>... How?</i>
+</div>
+<br />
+
+<!-- Ryze Free Rotation -->
+<div id="ryzeFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="ryzeFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="ryzeFreeWeekDescription" class="achievementDescription">
+RYZE FREE ROTATION <i>(Level 1 Ryze)</i> <br/>
+<i>"Zap!"</i>
+</div>
+<br />
+
+<!-- Ryze player -->
+<div id="ryzePlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="ryzePlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="ryzePlayerDescription" class="achievementDescription">
+RYZE PLAYER <i>(Level 100 Ryze)</i> <br/>
+<i>"Just in time for the new Ryze rework!"</i>
+</div>
+<br />
+
+
+<!-- Darius Free Rotation -->
+<div id="dariusFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="dariusFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="dariusFreeWeekDescription" class="achievementDescription">
+DARIUS FREE ROTATION <i>(Level 1 Darius)</i> <br/>
+<i>"Noxus will rise."</i>
+</div>
+<br />
+
+<!-- Darius player -->
+<div id="dariusPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="dariusPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="dariusPlayerDescription" class="achievementDescription">
+DARIUS PLAYER <i>(Level 100 Darius)</i> <br/>
+<i>"Witness true strength."</i>
+</div>
+<br />
+
+<!-- Rumble Free Rotation -->
+<div id="rumbleFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="rumbleFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="rumbleFreeWeekDescription" class="achievementDescription">
+RUMBLE FREE ROTATION <i>(Level 1 Rumble)</i> <br/>
+<i>"Now we're cookin'."</i>
+</div>
+<br />
+
+<!-- Rumble player -->
+<div id="rumblePlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="rumblePlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="rumblePlayerDescription" class="achievementDescription">
+RUMBLE PLAYER <i>(Level 100 Rumble)</i> <br/>
+<i>"Who you callin' little?"</i>
+</div>
+<br />
+
+<!-- Rriven Free Rotation -->
+<div id="rivenFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="rivenFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="rivenFreeWeekDescription" class="achievementDescription">
+RIVEN FREE ROTATION <i>(Level 1 Riven)</i> <br/>
+<i>"Maybe wait a little before trying her out in ranked..."</i>
+</div>
+<br />
+
+<!-- riven player -->
+<div id="rivenPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="rivenPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="rivenPlayerDescription" class="achievementDescription">
+RIVEN PLAYER <i>(Level 100 Riven)</i> <br/>
+<i>"Learn from your mistakes... You probably learn a lot"</i>
+</div>
+<br />
+
+<!-- Syndra Free Rotation -->
+<div id="syndraFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="syndraFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="syndraFreeWeekDescription" class="achievementDescription">
+SYNDRA FREE ROTATION <i>(Level 1 Syndra)</i> <br/>
+<i>"You are ready to start 'outplaying' ADCs real good!"</i>
+</div>
+<br />
+
+<!-- syndra player -->
+<div id="syndraPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="syndraPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="syndraPlayerDescription" class="achievementDescription">
+SYNDRA PLAYER <i>(Level 100 Syndra)</i> <br/>
+<i>"People fear what they cannot understand... Like how much skill Syndra's R takes!"</i>
+</div>
+<br />
+
+<!-- Pantheon Free Rotation -->
+<div id="pantheonFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="pantheonFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="pantheonFreeWeekDescription" class="achievementDescription">
+PANTHEON FREE ROTATION <i>(Level 1 Pantheon)</i> <br/>
+<i>"My profession?! You know, now that I think of it, I've always wanted to be a baker."</i>
+</div>
+<br />
+
+<!-- pantheon player -->
+<div id="pantheonPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="pantheonPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="pantheonPlayerDescription" class="achievementDescription">
+PANTHEON PLAYER <i>(Level 100 Pantheon)</i> <br/>
+<i>"Yes, a baker."</i>
+</div>
+<br />
+
+<!-- Mordekaiser Free Rotation -->
+<div id="mordekaiserFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="mordekaiserFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="mordekaiserFreeWeekDescription" class="achievementDescription">
+MORDEKAISER FREE ROTATION <i>(Level 1 Mordekaiser)</i> <br/>
+<i>"Go catch some dragons!"</i>
+</div>
+<br />
+
+<!-- mordekaiser player -->
+<div id="mordekaiserPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="mordekaiserPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="mordekaiserPlayerDescription" class="achievementDescription">
+MORDEKAISER PLAYER <i>(Level 100 Mordekaiser)</i> <br/>
+<i>"Or should it say level 100 bug-catcher?"</i>
+</div>
+<br />
+
+<!-- Lee Sin Free Rotation -->
+<div id="leeSinFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="leeSinFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="leeSinFreeWeekDescription" class="achievementDescription">
+LEE SIN FREE ROTATION <i>(Level 1 Lee Sin)</i> <br/>
+<i>"Force is meaningless without skill."</i>
+</div>
+<br />
+
+<!-- leeSin player -->
+<div id="leeSinPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="leeSinPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="leeSinPlayerDescription" class="achievementDescription">
+LEE SIN PLAYER <i>(Level 100 Lee Sin)</i> <br/>
+<i>"Have you mastered your Insec-kick yet?"</i>
+</div>
+<br />
+
+<!-- Kassadin Free Rotation -->
+<div id="kassadinFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="kassadinFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="kassadinFreeWeekDescription" class="achievementDescription">
+KASSADIN FREE ROTATION <i>(Level 1 Kassadin)</i> <br/>
+<i>"I tried to silence my mother once. Boy, did I regret that."</i>
+</div>
+<br />
+
+<!-- kassadin player -->
+<div id="kassadinPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="kassadinPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="kassadinPlayerDescription" class="achievementDescription">
+KASSADIN PLAYER <i>(Level 100 Kassadin)</i> <br/>
+<i>"KassaWIIINNN"</i>
+</div>
+<br />
+
+<!-- Zed Free Rotation -->
+<div id="zedFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="zedFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="zedFreeWeekDescription" class="achievementDescription">
+ZED FREE ROTATION <i>(Level 1 Zed)</i> <br/>
+<i>"Emb. Emb. Emb. Embrace the shadow..."</i>
+</div>
+<br />
+
+<!-- zed player -->
+<div id="zedPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="zedPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="zedPlayerDescription" class="achievementDescription">
+ZED PLAYER <i>(Level 100 Zed)</i> <br/>
+<i>"Look at the cleanse! Look at the moves!"</i>
+</div>
+<br />
+
+<!-- Heimerdinger Free Rotation -->
+<div id="heimerdingerFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="heimerdingerFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="heimerdingerFreeWeekDescription" class="achievementDescription">
+HEIMERDINGER FREE ROTATION <i>(Level 1 Heimerdinger)</i> <br/>
+<i>"Raise your what?"</i>
+</div>
+<br />
+
+<!-- heimerdinger player -->
+<div id="heimerdingerPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="heimerdingerPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="heimerdingerPlayerDescription" class="achievementDescription">
+HEIMERDINGER PLAYER <i>(Level 100 Heimerdinger)</i> <br/>
+<i>"Ready to start wrecking bottom lane!"</i>
+</div>
+<br />
+
+<!-- Draven Free Rotation -->
+<div id="dravenFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="dravenFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="dravenFreeWeekDescription" class="achievementDescription">
+DRAVEN FREE ROTATION <i>(Level 1 Draven)</i> <br/>
+<i>"Yes, you are supposed to catch those"</i>
+</div>
+<br />
+
+<!-- draven player -->
+<div id="dravenPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="dravenPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="dravenPlayerDescription" class="achievementDescription">
+DRAVEN PLAYER <i>(Level 100 Draven)</i> <br/>
+<i>"You are so ALPHA now"</i>
+</div>
+<br />
+
+<!-- Akali Free Rotation -->
+<div id="akaliFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="akaliFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="akaliFreeWeekDescription" class="achievementDescription">
+AKALI FREE ROTATION <i>(Level 1 Akali)</i> <br/>
+<i>"Mark acquired."</i>
+</div>
+<br />
+
+
+<!-- akali player -->
+<div id="akaliPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="akaliPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="akaliPlayerDescription" class="achievementDescription">
+AKALI PLAYER <i>(Level 100 Akali)</i> <br/>
+<i>"No one tells me what to do. Not anymore."</i>
+</div>
+<br />
+
+<!-- Aurelion Sol Free Rotation -->
+<div id="aurelionSolFreeWeek" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="aurelionSolFreeWeekLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="aurelionSolFreeWeekDescription" class="achievementDescription">
+AURELION SOL FREE ROTATION <i>(Level 1 Aurelion Sol)</i> <br/>
+<i>"Now we're playing with star fire!"</i>
+</div>
+<br />
+
+<!-- aurelionSol player -->
+<div id="aurelionSolPlayer" class="achievement">
+<i class="fa fa-lock fa-fw fa-3x"></i>
+</div>
+
+<div id="aurelionSolPlayerLockedDescription" class="lockedDescription">
+?????
+</div>
+<div id="aurelionSolPlayerDescription" class="achievementDescription">
+AURELION SOL PLAYER <i>(Level 100 Aurelion Sol)</i> <br/>
+<i>"There simply are no other dragons like me."</i>
+</div>
+<br />
+
+
+
+</div>
+</div>
+<br><br><br><br><br>
+
+</div>
+
+<!-- *********************
+END OF UNLOCK
+********************** -->
+
+<!-- *********************
+START OF OPTIONS
+********************** -->
+
+<div class="tab" id="options"><!-- OPTIONS -->
+<!--
+<div class="social">
+<a href="https://www.facebook.com/pages/Teemo-Slayer/275012979368479" target="_blank">
+<img src="files/fbIcon.jpg" height="80" width="80">
+</a>
+</div>
+-->
+
+
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x"><span>ABOUT</span></i>
+</div>
+
+<h2 class="tabTitle">Options</h2>
+<div class="small-separator"></div>
+<div class="tabContent">
+
+<div id="optionsButtons">
+<div id="saveDiv">
+<i onClick="save();" style="cursor:pointer;" class="fa fa-floppy-o fa-4x fa-fw"><span>SAVE<br/></span></i>
+</div>
+<div id="wipeSaveDiv">
+<i onClick="wipeSave();" style="cursor:pointer;" class="fa fa-trash fa-4x fa-fw" ><span>WIPE SAVE</span></i>
+</div>
+<div id="endSeasonDiv">
+<i onClick="resetGame();" style="cursor:pointer;" class="fa fa-trophy  fa-4x fa-fw"><span>END SEASON</span></i>
+</div>
+
+<br/>
+<br/>
+<br/>
+<div id="exportSaveDiv">
+<button class="miscButtonSpan" onClick="exportSave();">Export save</button>
+<input type="text" id="exportandum">
+</div>
+
+<div id="importSaveDiv">
+<button class="miscButtonSpan" onClick="importSave();" type="submit">Load</button>
+<input type="text" id="importandum">
+</div>
+
+</div>
+
+
+
+</div>
+<br><br><br><br><br>
+
+</div>
+
+<!-- *********************
+END OF OPTIONS
+********************** -->
+
+<!-- *********************
+START OF ABOUT
+********************** -->
+
+
+<div class="tab" id="about"><!-- ABOUT -->
+
+
+<div id="menu">
+<i onClick="openTab(0);" class="fa fa-users fa-2x"><span>CHAMPIONS</span></i>
+<i onClick="openTab(1);" class="fa fa-shopping-cart fa-2x"><span>ITEMS</span></i>
+<i onClick="openTab(2);" class="fa fa-th-list fa-2x"><span>STATS</span></i>
+<i onClick="openTab(3);" class="fa fa-unlock-alt fa-2x"><span>UNLOCK</span></i>
+<i onClick="openTab(4);" class="fa fa-cog fa-2x"><span>OPTIONS</span></i>
+<i onClick="openTab(5);" class="fa fa-book fa-2x" style="border-bottom-style: solid; border-bottom-style: solid; padding-bottom: 2px; border-bottom-width: 1.75px;"><span>ABOUT</span></i>
+</div>
+
+<h2 class="tabTitle">About</h2>
+<div class="small-separator"></div>
+
+<div class="tabContent">
+
+<i id="notice">Teemo Slayer isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</i>
+<br/>
+    <br/>
+    <br/>
+<div class="small-separator-long"></div>
+
+<div id="patchNotes">
+    <h3>PATCH NOTES</h3>
+    <p>Check out the <a href="http://www.reddit.com/r/teemoslayer/" target="_blank">subreddit</a> to discuss the game and propose changes! Teemo Slayer is a work in progress project, your ideas will be considered for future updates!</p>
+    <br/>
+
+    <div class="small-separator"></div>
+
+    <h4>25/09/2018 - Champion Spells</h4>
+    <ul>
+        <li>New mechanic: champion spells! This is pretty much an open alpha. Feedback on spells is very welcome! 4 champion spells added, more to come in the future!</li>
+        <li>Overload (unlocked at Ryze level 1)</li>
+        <li>Broken Wings (unlocked at Riven level 1)</li>
+        <li>Children of the Grave (unlocked at Mordekaiser level 6)</li>
+        <li>Death Mark (unlocked at Zed level 6)</li>
+        <li>Decreased requirements for Poros</li>
+        <li>Decreased Teemo resistances in early game</li>
+        <li>Trinity Force: removed 20% attack speed (interferes with the item active), added 20% cooldown reduction</li>
+        <li>Nerfed muscles power to compensate the GpS increase from spells and the nerf to Teemo resistances</li>
+        <li>Decreased requirements to unlock URF passive (which is now truly enjoyable with champion spells)</li>
+        <li>BUGFIX - made export save better selectable</li>
+        <li>Some minor graphic improvements (Ryze icon, options buttons and others)</li>
+
+    </ul>
+    <br/>
+
+    <div class="small-separator"></div>
+
+    <h4>19/09/2018 - New Graphics</h4>
+    <ul>
+        <li>New graphics</li>
+        <li>Skin can now be used to change the main button</li>
+        <li>Fixed bug with URF passive that caused item actives to bug</li>
+        <li>Reduced duration of Deathfire Grasp's active to one minute</li>
+        <li>Added button to buy 10 levels of a champion</li>
+        <li>Added keyboard shortcuts indicators to inventory</li>
+        <li>Adjusted cost of lvl18 champion upgrades</li>
+        <li>Added description of what stats do</li>
+
+    </ul>
+    <br/>
+    <div class="small-separator"></div>
+
+    <h4>08/09/2018 - New URF Passive</h4>
+    <ul>
+        <li>Reworked URF passive to grant 80% cooldown reduction (fixed).</li>
+        <li>Graphical Improvements</li>
+        <li>Added more stats in the main page</li>
+        <li>Added tooltip to indicate current muscle bonus in stat tab</li>
+        <li>Added button to sell all items in one click</li>
+        <li>Decreased cost of dorans blade and dorans ring to 100g</li>
+        <li>Fixed a bug that caused attack speed-triggered clicks to hit for less than normal mouse clicks.</li>
+
+    </ul>
+    <br/>
+    <div class="small-separator"></div>
+
+    <h4>02/09/2018 - Attack Speed</h4>
+    <ul>
+        <li>Balanced champion cost and GpS for later stages of the game</li>
+        <li>New Stat: Attack Speed. Having attack speed (more than 0%) makes automatic cursor hits on Teemo every set amount of seconds. The attacks can crit, and proc on-hit effects (like spellblade). Example: having 50% attack speed means an automatic cursor hit on Teemo every 10 seconds</li>
+        <li>New Item: Phantom Dancer. 55% attack speed, 30% critical strike chance (item in test)</li>
+        <li>New Item: Nashor's Tooth. 55% attack speed, 20% cooldown reduction, 50 AP (item in test)</li>
+
+    </ul>
+    <br/>
+    <div class="small-separator"></div>
+
+
+    <h4>01/09/2018 - Bonetooth Necklace</h4>
+    <ul>
+        <li>New RIP-tier item: Bonetooth Necklace - gives GpS bonus based on the amount of achievements unlocked (the icon changes too!)</li>
+        <li>New achievement tier for owning lvl1 champions</li>
+        <li>New Teemo skin: Omega Squad Teemo</li>
+        <li>Reworked Teemo skins pricing</li>
+        <li>Buying champion upgrades now also doubles the AP/AD bonus granted by the champion</li>
+    </ul>
+    <br/>
+    <div class="small-separator"></div>
+
+
+    <h4>28/08/2018 - Game is back online!</h4>
+    <ul>
+        <li>Buffed Gangplank passive: 5% -> 10% bonus GpS</li>
+        <li>Buffed Tryndamere passive: 10% -> 20% increased mouse hit power</li>
+        <li>Nerfed Kayle passive: 30% of your AD is added to your AP -> 15% of your AD is added to your AP (AP to AD conversion unchanged)</li>
+        <li>New champion: Aurelion Sol (AP)</li>
+        <li>Quality of life change: You will now see how many Poros you are getting before ending the season</li>
+        <li>Quality of life change: Items with spells on cooldown are displayed as grayed out in the main page inventory</li>
+        <li>Quality of life change: Notifications</li>
+    </ul>
+
+</div>
+
+</div>
+<br><br><br><br><br>
+
+</div>
+
+<!-- *********************
+END OF ABOUT
+********************** -->
+
+
+</div> <!-- End of "game" -->
+
+<!--============================================
+	GOOGLE ANALYTICS
+=============================================-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53395837-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!--============================================
+	FLOATING DESCRIPTIONS SCRIPT
+=============================================-->
+
+<script type="text/javascript" language="JavaScript"> //description script
+<!-- Copyright 2006,2007 Bontrager Connection, LLC
+// http://www.willmaster.com/
+// Version: July 28, 2007
+var cX = 0; var cY = 0; var rX = 0; var rY = 0;
+function UpdateCursorPosition(e){ cX = e.pageX; cY = e.pageY;}
+function UpdateCursorPositionDocAll(e){ cX = event.clientX; cY = event.clientY;}
+if(document.all) { document.onmousemove = UpdateCursorPositionDocAll; }
+else { document.onmousemove = UpdateCursorPosition; }
+function AssignPosition(d) {
+if(self.pageYOffset) {
+	rX = self.pageXOffset;
+	rY = self.pageYOffset;
+	}
+else if(document.documentElement && document.documentElement.scrollTop) {
+	rX = document.documentElement.scrollLeft;
+	rY = document.documentElement.scrollTop;
+	}
+else if(document.body) {
+	rX = document.body.scrollLeft;
+	rY = document.body.scrollTop;
+	}
+if(document.all) {
+	cX += rX;
+	cY += rY;
+	}
+d.style.left = (cX) + "px";
+d.style.top = (cY) + "px";
+}
+function HideContent(d) {
+if(d.length < 1) { return; }
+document.getElementById(d).style.display = "none";
+}
+function ShowContent(d) {
+if(d.length < 1) { return; }
+var dd = document.getElementById(d);
+AssignPosition(dd);
+dd.style.display = "block";
+}
+function ReverseContentDisplay(d) {
+if(d.length < 1) { return; }
+var dd = document.getElementById(d);
+AssignPosition(dd);
+if(dd.style.display == "none") { dd.style.display = "block"; }
+else { dd.style.display = "none"; }
+}
+
+</script>
+
+<script type="text/javascript" src="main.js"></script>
+</body>
+
+
+
+
+</html>

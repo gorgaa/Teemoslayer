@@ -1,0 +1,794 @@
+/*================
+	BLOCK MODEL
+================*/
+
+#game{
+	display: inline-block;
+    position:fixed;
+	width: 100%;
+    height: 90%;
+    top: 155px;
+    min-height: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+#topBanner{
+    top: 0;
+    height: 60px;
+    width: 100%;
+    display: inline-block;
+    position: fixed;
+    background-color: rgba(8, 35, 49, 0.75);
+}
+
+#adBanner{
+	top: 65px;
+	height: 90px;
+	width: 100%;
+	display: inline-block;
+	position: fixed;
+    align-items: center;
+	text-align: center;
+
+}
+
+
+.topBannerButton{
+    height:100%;
+    display: inline-flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    color: #C9BB8E;
+    cursor: pointer;
+    vertical-align: top;
+    margin-right: 1%;
+    float: right;
+}
+
+.topBannerButton:hover{
+	color: #EAE0CD;
+	text-shadow: 0 0 8px white;
+}
+
+.topBannerButton a{
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#logo{
+    height:50px;
+    display: inline-block;
+    margin-left: 6%;
+    margin-top: 5px;
+    margin-right: 2%;
+}
+
+#logo:hover{
+	text-shadow: 0 0 10px white;
+}
+
+#hitHim{
+
+	display: inline-block;
+    position: fixed;
+        overflow-y: scroll;
+    height: 100%;
+	min-height: 100%;
+	width : 40%;
+    float: left;
+    left: 5%;
+	text-align: center;
+	background-color: rgba(255,255,255,0.8);
+
+   /* background-color: rgba(93, 116, 153, 0.85);  find the right color for this */
+
+
+
+}
+
+#champions{
+
+	display: inline-block;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100%;
+	min-height: 100%;
+	width : 50%;
+    right: 5%;
+    float: right;
+	text-align: center;
+	background-color: rgba(255,255,255,0.8);
+
+}
+
+
+#itemShop, #stats, #unlock, #options, #about{
+
+    display: none;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100%;
+	min-height: 100%;
+	width : 50%;
+    right: 5%;
+    float: right;
+	text-align: center;
+	background-color: rgba(255,255,255,0.85);
+}
+
+
+html, body{
+	background: url('files/graphics/bg2.jpg') fixed;
+	height: 100%;
+	margin: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#googleAd{
+
+	width: 728px;
+	height: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+	margin-top: 0px;
+	background-color: white;
+	cursor: pointer;
+}
+
+
+
+/*================
+	SOCIAL PANEL
+================*/
+
+
+.social{
+
+	position: absolute;
+	top: 0;
+	left: 5%;
+}
+/*================
+	FOOTER
+================*/
+.footer{
+	vertical-align: text-bottom;
+	color: white;
+}
+
+.footer a{
+	text-decoration: none;
+	color: white;
+}
+
+.footer a:hover{
+	text-decoration: underline;
+}
+
+.footer a:visited{
+	color: white;
+}
+
+/*================
+	GENERAL
+================*/
+
+
+.minimize, .expand{
+	cursor: pointer;
+}
+
+
+/*================
+	FONT
+================*/
+
+html{
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+
+.tabTitle{
+	font-size: 200%;
+
+}
+
+/*================
+	CHAMPION BLOCKS
+================*/
+
+#rivenChampionBlock, #syndraChampionBlock, #pantheonChampionBlock, #mordekaiserChampionBlock, #leeSinChampionBlock, #kassadinChampionBlock, #zedChampionBlock, #heimerdingerChampionBlock, #dravenChampionBlock, #akaliChampionBlock, #aurelionSolChampionBlock{
+}
+
+/*================
+	MENU
+================*/
+#menu{
+    display: inline-block;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+   width: 100%;
+
+
+
+	/*background-color: #616c7c; */
+    background-color: rgba(8, 35, 49, 1);
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+
+	-webkit-box-shadow: 8px 3px 15px 0px rgba(50, 50, 50, 0.36);
+	-moz-box-shadow:    4px 3px 15px 0px rgba(50, 50, 50, 0.36);
+	box-shadow:         4px 3px 15px 0px rgba(50, 50, 50, 0.36);
+}
+
+#menu i{
+    color: #C9BB8E;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+
+
+}
+
+#menu i:hover{
+	color: #EAE0CD;
+	text-shadow: 0 0 8px white;
+}
+
+#menu span{
+	display: block;
+	font-size: 0.3em;
+	font-weight: bold;
+}
+
+/*================
+	TAB CLOSERS  ("BACK" BUTTON)
+================*/
+
+.tabCloser i{
+	cursor:pointer;
+}
+
+.tabCloser span{
+	display: block;
+	font-size: 0.6em;
+	font-weight: bold;
+}
+
+.tabCloser i:hover{
+	color: #058DC7;
+	text-shadow: 0 0 8px #058DC7;
+}
+
+/*================
+	TAB HEADER
+================*/
+
+.tabFixedHeader{
+
+    background-color: #616c7c; /*test*/
+	position: fixed;
+	right: 15%;
+	width: 80px;
+	top: 30%;
+	padding: 5px;
+
+
+	/*
+	background: -webkit-linear-gradient(#7F7F7F, #BCBCBC);
+	background: -o-linear-gradient(#7F7F7F, #BCBCBC);
+	background: -moz-linear-gradient(#7F7F7F, #BCBCBC);
+	background: linear-gradient(#7F7F7F, #BCBCBC);
+
+
+	-webkit-border-top-left-radius: 11px;
+	-webkit-border-bottom-left-radius: 11px;
+	-moz-border-radius-topleft: 11px;
+	-moz-border-radius-bottomleft: 11px;
+	border-top-left-radius: 11px;
+	border-bottom-left-radius: 11px;
+    	*/
+
+		-webkit-box-shadow: 4px 3px 15px 0px rgba(50, 50, 50, 0.36);
+	-moz-box-shadow:    4px 3px 15px 0px rgba(50, 50, 50, 0.36);
+	box-shadow:         4px 3px 15px 0px rgba(50, 50, 50, 0.36);
+
+
+
+
+}
+/*====================
+	PRETTY BUTTONS
+====================*/
+
+#mainButton {
+
+	display: block;
+	padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: auto;
+	width: 200px;
+    height: 200px;
+
+
+}
+
+
+#mainButton:focus{
+    outline:none;
+}
+
+#mainButtonIcon {
+	display: block;
+    border-radius: 50%;
+
+
+}
+
+#mainButton:active {
+	-webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    -webkit-animation: none;
+    animation: none
+
+}
+
+
+#mainButtonIcon:focus{
+    outline:none;
+}
+
+.buttonImage{
+	display: block;
+}
+
+.buttonImage:focus{
+    outline:none;
+}
+
+.itemButton, .championButton, .passiveButton{
+	display: block;
+	padding: 0;
+    border-radius: 3px;
+    text-shadow: 0 -1px 0 #000;
+    box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,1);
+
+    cursor: pointer;
+
+}
+
+.itemButton:active, .championButton:active, .passiveButton:active{
+	-webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    -webkit-animation: none;
+    animation: none
+	  text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff;
+    box-shadow: 0 1px 0 #666, 0 2px 0 #444, 0 2px 2px rgba(0,0,0,0.9);
+}
+
+
+#options .tabContent i:not(#notice):hover{
+	color: #058DC7;
+}
+
+
+
+/*====================
+	TAB CONTENT
+====================*/
+.tabContent{
+	text-align: justify;
+	padding: 30px;
+    margin-bottom: 10%;
+}
+
+
+
+/*================
+	MAIN PAGE
+================*/
+
+#mainContent{
+	margin: 2%;
+
+}
+
+#mainRight, #mainLeft{
+	display: inline-block;
+	width: 45%;
+	vertical-align: text-top;
+	text-align: center;
+}
+
+
+#activesBar{
+	margin: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	height: 40px;
+}
+
+#activesBar img{
+	display: none;
+	width: 50px;
+	height: 50px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#playerStats, #chosenPassiveIcon{
+    text-align: justify;
+	vertical-align: text-top;
+	display: inline-block;
+	margin: 10px;
+}
+
+/*====================
+	MISC BUTTONS
+====================*/
+
+.miscButtonSpan{
+    cursor: pointer;
+    background-color: rgba(8, 35, 49, 1);
+    border-color:  #C9BB8E;
+    border-style: outset;
+    color: #C9BB8E;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+
+}
+
+.miscButtonSpan:hover{
+    color: #EAE0CD;
+	text-shadow: 0 0 8px white;
+}
+
+.miscButtonSpan:active{
+    border-style: inset;
+    color: #EAE0CD;
+	text-shadow: 0 0 8px white;
+}
+
+
+
+/*====================
+	LINE SEPARATORS
+====================*/
+
+.big-separator{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 15px;
+	width: 80%;
+	height: 1px;
+	border-bottom:1px groove ;
+}
+
+.small-separator{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 50%;
+	height: 1px;
+	border-bottom:1px groove ;
+}
+
+.small-separator-long{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 100%;
+	height: 1px;
+	border-bottom:1px groove ;
+}
+/*=====================================================
+		ITEMS
+=====================================================*/
+
+.itemData, .itemButton {
+	vertical-align: text-top;
+	display: inline-block;
+
+}
+
+.itemData{
+	margin-left: 20px;
+}
+
+.description{
+	margin-top: 15px;
+
+	border-left: 1px groove;
+	padding-left: 5px;
+}
+
+#trinityForceSpellBlade, #ghostbladeFrenzy, #deathfireGraspDoom, #frenzyTimeLeft, #doomTimeLeft {
+	display: inline-block;
+	margin-left: 20px;
+	border-bottom: 1px groove ;
+	vertical-align: text-top;
+	display: none;
+}
+
+#itemShop h3{
+	text-align: center;
+}
+
+#tierRIP{
+	display: none;
+}
+
+/*=====================================================
+		CHAMPIONS
+=====================================================*/
+
+.championData, .championButton{
+	display: inline-block;
+	vertical-align: text-top;
+}
+
+.championUpgrade{
+	display: none;
+	vertical-align: text-top;
+}
+
+.championSpellsBlock{
+    display: none;
+}
+
+.championBuy10{
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+
+
+/*=====================================================
+		INVENTORY AND SPELLS
+=====================================================*/
+
+/*
+#spellSlot0{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+*/
+
+#inventoryAndSpells{
+    background-color: rgba(8, 35, 49, 0.95);
+    border-style: solid;
+    border-color:  #C9BB8E;
+    margin-bottom: 20%;
+}
+
+.inventoryAndSpellsTitle{
+    color: #C9BB8E;
+    padding: 0;
+    margin-bottom: 5%;
+}
+
+#mainInventory{
+    top: 0;
+    display: inline-block;
+    position: relative;
+    width: 40%;
+	cursor: pointer;
+    vertical-align: top;
+    margin-bottom: 4%;
+
+}
+
+
+#mainSpells{
+    top: 0;
+/*    display: none;*/
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    cursor: pointer;
+    vertical-align: top;
+    margin-bottom: 4%;
+}
+
+.itemSlotContainer {
+    display: inline-block;
+    position: relative;
+    width: 18%;
+}
+
+.itemSlotIndicator{
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
+
+
+.itemSlot{
+    width: 100%;
+}
+
+
+.spellSlotContainer {
+    display: inline-block;
+    position: relative;
+    width: 18%;
+}
+
+.spellSlotIndicator{
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
+
+.spellSlotCooldownIndicator, .itemSloCooldownIndicator{
+    color: white;
+
+    font-size: 120%;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.spellSlot{
+    width: 100%;
+}
+
+/*=====================================================
+		STATS
+=====================================================*/
+
+#stats ul{
+	text-align: justify;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+}
+
+#stats .tabContent{
+	font-size: 125%;
+}
+
+.statDescription{
+    font-size: 80%;
+}
+
+/*====================
+	TEEMO SKINS
+====================*/
+
+
+
+/*==================
+	ACHIEVEMENTS
+==================*/
+
+.achievement{
+	display: inline-block;
+	padding-bottom: 15px;
+
+}
+
+.achievementDescription{
+	display: none;
+}
+
+
+
+.lockedDescription{
+	display: inline-block;
+
+}
+
+/*==================
+	OPTIONS
+==================*/
+
+#options .tabContent span{
+	display: block;
+	font-size: 0.3em;
+	font-weight: bold;
+}
+
+#saveDiv, #wipeSaveDiv, #endSeasonDiv{
+	padding-left: 15px;
+	padding-right: 15px;
+	display: inline-block;
+	vertical-align: text-top;
+
+
+}
+
+#optionsButtons{
+	text-align: center;
+
+}
+
+
+/*==================
+	CHOOSE YOUR PASSIVE
+==================*/
+
+#urfChoice{
+
+}
+
+
+
+#chooseYourPassive{
+	text-align: justify;
+    margin-bottom: 200px;
+}
+
+.passiveButton, .passiveDes{
+	display: inline-block;
+	vertical-align: text-top;
+}
+
+
+
+/*================
+	NOTIFICATIONS V2
+================*/
+
+.notificationsV2{
+
+    width: 13%;
+
+    display: block;
+    position: fixed;
+    right: 5px;
+    top: 60px;
+
+
+   /* background-color: #616c7c; test*/
+    /*background-color: rgba(255,255,255,0.85);*/
+    background-color: rgba(8, 35, 49, 1);
+    color: #EAE0CD;
+    font-weight: bold;
+
+    text-align: center;
+    /*vertical-align: middle;*/
+
+    -webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+
+    border-style: inset;
+    border-color: #C9BB8E;
+
+}
+
+
+
+/*================
+	CURSOR HIT GRAPHICS
+================*/
+
+.hitDrawingClass{
+    color: white;
+    position: fixed;
+}
